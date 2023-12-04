@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   outerContainer: {
     flex: 1,
     height: 200,
-    backgroundColor: 'yellow', // Border color of the screen
+    backgroundColor: 'black', // Border color of the screen
    },
    container: {
     flex: 1,
