@@ -30,6 +30,9 @@ const styles = StyleSheet.create({
   scrollView: {
     flexGrow: 1,
     justifyContent: 'center',
-    paddingHorizontal: 20, // Added padding for better layout
+    paddingHorizontal: 20, // Keep your horizontal padding
+    borderTopWidth: 1, // Set top border width
+    borderBottomWidth: 1, // Set bottom border width
+    borderColor: '#000000', // Replace with the color you want for the border
   },
 });

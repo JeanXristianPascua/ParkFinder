@@ -22,7 +22,7 @@ export default function LoginForm() {
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
-        <Image source={require('./assets/logo.png')} style={styles.logo} />
+        <Image source={require('../assets/logo.png')} style={styles.logo} />
       </View>
       <Text style={styles.text}>USERNAME:</Text>
       <TextInput
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 10,
         height: 45,
-        width: 35,
+        width: 40,
         padding: 5,
         justifyContent: 'center',
         alignItems: 'center',
