@@ -1,20 +1,35 @@
-import React, { useState } from 'react';
-import { SafeAreaView, StatusBar, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
-import styles from '../layouts/styles';
+import React from 'react';
+import { SafeAreaView, StatusBar, KeyboardAvoidingView, Platform, ScrollView, StyleSheet } from 'react-native';
 import LoginForm from '../components/LoginForm';
 
 export default function LoginScreen() {
   return (
     <SafeAreaView style={styles.outerContainer}>
-      <StatusBar barStyle="light-content" backgroundColor="black" />
+      <StatusBar barStyle="light-content" backgroundColor="#000000" />
       <KeyboardAvoidingView 
-        style={{ flex: 1 }} 
-        behavior={Platform.OS === "android" ? "padding" : "height"}
+        style={styles.keyboardView}
+        behavior={Platform.OS === "ios" ? "padding" : null}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 60 : 0}
       >
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <ScrollView contentContainerStyle={styles.scrollView}>
           <LoginForm />
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  outerContainer: {
+    flex: 1,
+    backgroundColor: '#000000', // Updated for consistency
+  },
+  keyboardView: {
+    flex: 1,
+  },
+  scrollView: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 20, // Added padding for better layout
+  },
+});
