@@ -1,14 +1,27 @@
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
+import { View, TextInput, TouchableOpacity, Text, Image, StyleSheet, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [passwordVisibility, setPasswordVisibility] = useState(true);
   const [rememberMe, setRememberMe] = useState(false);
+  const navigation = useNavigation();
 
   const handleLogin = () => {
-    console.log('Username:', username, 'Password:', password, 'Remember Me:', rememberMe);
+    // Simple form validation
+    if (username === '' || password === '') {
+      Alert.alert('Error', 'Please enter both username and password');
+      return;
+    }
+
+    // Simulated authentication logic (replace with your actual logic)
+    if (username === 'user' && password === 'password') { // Replace with actual authentication check
+      navigation.navigate('Home');
+    } else {
+      Alert.alert('Error', 'Invalid username or password');
+    }
   };
 
   const handleCreateAccount = () => {
@@ -80,7 +93,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 20,
         backgroundColor: '#fff', // Background color of the screen
-        marginVertical: 20, // This creates the top and bottom borders
+        marginVertical: 40, // This creates the top and bottom borders
        },
     logoContainer: {
         marginBottom: 30,
@@ -160,7 +173,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 10,
         height: 45,
-        width: 40,
+        width: 45,
         padding: 5,
         justifyContent: 'center',
         alignItems: 'center',
