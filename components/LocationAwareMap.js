@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import * as Location from 'expo-location';
-import MapComponent from '../components/MapComponent';
+import MapComponent from './MapComponent'; // Adjust the import path as needed
 
-export default function HomeScreen() {
+export default function LocationAwareMap() {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {
     (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
+      let { status } = await Location.requestPermissionsAsync();
       if (status !== 'granted') {
         setErrorMsg('Permission to access location was denied');
         return;
@@ -20,28 +20,21 @@ export default function HomeScreen() {
     })();
   }, []);
 
-  let text = 'Waiting..';
   if (errorMsg) {
-    text = errorMsg;
-  } else if (location) {
-    text = JSON.stringify(location);
+    return <View style={styles.container}><Text>{errorMsg}</Text></View>;
   }
 
-  return (
-    <View style={styles.container}>
-      {location ? (
-        <MapComponent location={location} />
-      ) : (
-        <Text>{text}</Text>
-      )}
-    </View>
-  );
-};
+  if (!location) {
+    return <View style={styles.container}><Text>Loading...</Text></View>;
+  }
+
+  return <MapComponent location={location} />;
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
-  },
+    alignItems: 'center',
+  }
 });
