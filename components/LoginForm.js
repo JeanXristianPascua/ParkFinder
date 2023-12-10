@@ -33,7 +33,6 @@ export default function LoginForm() {
 
   return (
     <>
-      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
           <View style={styles.logoContainer}>
