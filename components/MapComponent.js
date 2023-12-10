@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Dimensions, ActivityIndicator } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
+import { getDistance } from 'geolib';
 
 export default function MapComponent() {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [subscription, setSubscription] = useState(null);
+  const [nearbyParkingLots, setNearbyParkingLots] = useState([]);
 
   useEffect(() => {
     (async () => {
@@ -21,6 +23,7 @@ export default function MapComponent() {
         distanceInterval: 10,
       }, (loc) => {
         setLocation(loc);
+        fetchParkingLots(loc.coords.latitude, loc.coords.longitude);
       });
 
       setSubscription(sub);
@@ -30,6 +33,62 @@ export default function MapComponent() {
       subscription && subscription.remove();
     };
   }, []);
+
+  const fetchParkingLots = async (latitude, longitude) => {
+    const url = 'https://data.calgary.ca/resource/rhkg-vwwp.json';
+    try {
+      const response = await fetch(url);
+      const parkingLots = await response.json();
+      console.log('API Data:', parkingLots); // Log the raw API data for debugging
+      const nearbyLots = findNearestParkingLots(parkingLots, latitude, longitude);
+      console.log('Nearby Parking Lots:', nearbyLots.slice(0, 3)); // Log the nearest parking lots
+      setNearbyParkingLots(nearbyLots.slice(0, 3));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const parseLineField = (lineField) => {
+    if (!lineField || !lineField.coordinates || !Array.isArray(lineField.coordinates)) {
+      return { latitude: null, longitude: null };
+    }
+  
+    // Assuming we take the first coordinate of the first LineString
+    const firstLineString = lineField.coordinates[0];
+    if (!firstLineString || !Array.isArray(firstLineString) || firstLineString.length === 0) {
+      return { latitude: null, longitude: null };
+    }
+  
+    const [longitude, latitude] = firstLineString[0]; // GeoJSON uses [longitude, latitude] order
+    return { latitude, longitude };
+  };
+  
+
+  const findNearestParkingLots = (parkingLots, userLat, userLong) => {
+    const processedLots = parkingLots.map(lot => {
+      const { latitude, longitude } = parseLineField(lot.line);
+
+      console.log(`Processed lot: latitude=${latitude}, longitude=${longitude}`); // Log processed lot data
+
+      if (latitude == null || longitude == null) {
+        return null;
+      }
+
+      return {
+        ...lot,
+        latitude,
+        longitude,
+        distance: getDistance(
+          { latitude: userLat, longitude: userLong },
+          { latitude, longitude }
+        )
+      };
+    }).filter(lot => lot !== null)
+      .sort((a, b) => a.distance - b.distance);
+
+    console.log('Processed and sorted lots:', processedLots); // Log final processed lots
+    return processedLots;
+  };
 
   if (errorMsg) {
     return <View style={styles.container}><Text>{errorMsg}</Text></View>;
@@ -65,10 +124,23 @@ export default function MapComponent() {
           title={"Your Location"}
           description={"You are here"}
         />
+        {nearbyParkingLots.map((lot, index) => (
+          !isNaN(lot.latitude) && !isNaN(lot.longitude) && (
+            <Marker
+              key={index}
+              coordinate={{
+                latitude: lot.latitude,
+                longitude: lot.longitude,
+              }}
+              title={lot.address_desc || "Parking Lot"}
+              description={`Distance: ${lot.distance} meters`}
+            />
+          )
+        ))}
       </MapView>
     </View>
   );
-};
+};  
 
 const styles = StyleSheet.create({
   container: {

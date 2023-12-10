@@ -6,11 +6,7 @@ export default function LoginScreen() {
   return (
     <SafeAreaView style={styles.outerContainer}>
       <StatusBar barStyle="light-content" backgroundColor="#000000" />
-      <KeyboardAvoidingView 
-        style={styles.keyboardView}
-        behavior={Platform.OS === "ios" ? "padding" : null}
-        keyboardVerticalOffset={Platform.OS === "ios" ? 60 : 0}
-      >
+      <KeyboardAvoidingView style={styles.keyboardView}>
         <ScrollView>
           <LoginForm />
         </ScrollView>
@@ -24,8 +20,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#000000', 
     height: 80,
-  },
-  keyboardView: {
-    flex: 1,
   },
 });
