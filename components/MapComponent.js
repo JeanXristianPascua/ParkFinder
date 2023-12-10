@@ -39,9 +39,7 @@ export default function MapComponent() {
     try {
       const response = await fetch(url);
       const parkingLots = await response.json();
-      console.log('API Data:', parkingLots); // Log the raw API data for debugging
-      const nearbyLots = findNearestParkingLots(parkingLots, latitude, longitude);
-      console.log('Nearby Parking Lots:', nearbyLots.slice(0, 3)); // Log the nearest parking lots
+      const nearbyLots = findNearestParkingLots(parkingLots, latitude, longitude); 
       setNearbyParkingLots(nearbyLots.slice(0, 3));
     } catch (error) {
       console.error(error);
@@ -53,13 +51,12 @@ export default function MapComponent() {
       return { latitude: null, longitude: null };
     }
   
-    // Assuming we take the first coordinate of the first LineString
     const firstLineString = lineField.coordinates[0];
     if (!firstLineString || !Array.isArray(firstLineString) || firstLineString.length === 0) {
       return { latitude: null, longitude: null };
     }
   
-    const [longitude, latitude] = firstLineString[0]; // GeoJSON uses [longitude, latitude] order
+    const [longitude, latitude] = firstLineString[0]; 
     return { latitude, longitude };
   };
   
@@ -67,8 +64,6 @@ export default function MapComponent() {
   const findNearestParkingLots = (parkingLots, userLat, userLong) => {
     const processedLots = parkingLots.map(lot => {
       const { latitude, longitude } = parseLineField(lot.line);
-
-      console.log(`Processed lot: latitude=${latitude}, longitude=${longitude}`); // Log processed lot data
 
       if (latitude == null || longitude == null) {
         return null;
@@ -86,7 +81,6 @@ export default function MapComponent() {
     }).filter(lot => lot !== null)
       .sort((a, b) => a.distance - b.distance);
 
-    console.log('Processed and sorted lots:', processedLots); // Log final processed lots
     return processedLots;
   };
 

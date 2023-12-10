@@ -1,24 +1,36 @@
 import React from 'react';
-import { SafeAreaView, StatusBar, KeyboardAvoidingView, Platform, ScrollView, StyleSheet } from 'react-native';
+import { SafeAreaView, StatusBar, KeyboardAvoidingView, ScrollView, StyleSheet, Platform } from 'react-native';
 import LoginForm from '../components/LoginForm';
 
 export default function LoginScreen() {
   return (
-    <SafeAreaView style={styles.outerContainer}>
+    <>
       <StatusBar barStyle="light-content" backgroundColor="#000000" />
-      <KeyboardAvoidingView style={styles.keyboardView}>
-        <ScrollView>
-          <LoginForm />
-        </ScrollView>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+      <SafeAreaView style={styles.safeAreaTop} />
+      <SafeAreaView style={styles.safeAreaBottom}>
+        <KeyboardAvoidingView style={styles.flex} behavior={Platform.OS === "ios" ? "padding" : "height"}>
+          <ScrollView contentContainerStyle={styles.flexGrow}>
+            <LoginForm />
+          </ScrollView>
+        </KeyboardAvoidingView>
+      </SafeAreaView>
+    </>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  outerContainer: {
-    flex: 1,
-    backgroundColor: '#000000', 
-    height: 80,
+  safeAreaTop: {
+    backgroundColor: 'black', 
+    flex: 0, 
   },
+  safeAreaBottom: {
+    flex: 1, 
+    backgroundColor: 'black' 
+  },
+  flex: {
+    flex: 1 
+  },
+  flexGrow: {
+    flexGrow: 1 
+  }
 });

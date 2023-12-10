@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 import * as Location from 'expo-location';
 import MapComponent from '../components/MapComponent';
 
@@ -28,7 +28,7 @@ export default function HomeScreen() {
   }
 
   return (
-    <View style={styles.container}>
+    <View>
       {location ? (
         <MapComponent location={location} />
       ) : (
@@ -38,10 +38,3 @@ export default function HomeScreen() {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-});

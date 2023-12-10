@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, Text, Image, StyleSheet, Alert } from 'react-native';
+import {
+  View,
+  TextInput,
+  TouchableOpacity,
+  Text,
+  Image,
+  StyleSheet,
+  Alert,
+  SafeAreaView,
+  StatusBar, // import StatusBar
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 export default function LoginForm() {
@@ -14,83 +24,79 @@ export default function LoginForm() {
       Alert.alert('Error', 'Please enter both username and password');
       return;
     }
-
-    if (username === 'user' && password === 'password') { 
+    if (username === 'user' && password === 'password') {
       navigation.navigate('Home');
     } else {
       Alert.alert('Error', 'Invalid username or password');
     }
   };
 
-  const handleCreateAccount = () => {
-  };
-
-  const handleForgotPassword = () => {
-  };
-
   return (
-    <View style={styles.container}>
-      <View style={styles.logoContainer}>
-        <Image source={require('../assets/logo.png')} style={styles.logo} />
-      </View>
-      <Text style={styles.text}>USERNAME:</Text>
-      <TextInput
-        style={styles.input}
-        value={username}
-        onChangeText={setUsername}
-        placeholder="Enter username"
-        accessible
-        accessibilityLabel="Username Input"
-      />
-      <Text style={styles.text}>PASSWORD:</Text>
-      <View>
-        <TextInput
-          style={styles.input}
-          secureTextEntry={passwordVisibility}
-          value={password}
-          onChangeText={setPassword}
-          placeholder="Enter password"
-          accessible
-          accessibilityLabel="Password Input"
-        />
-        <TouchableOpacity
-          style={styles.visibilityBtn}
-          onPress={() => setPasswordVisibility(!passwordVisibility)}
-        >
-          <Text>{passwordVisibility ? 'Show' : 'Hide'}</Text>
-        </TouchableOpacity>
-      </View>
-      <TouchableOpacity onPress={handleForgotPassword} style={styles.textContainer}>
-        <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-      </TouchableOpacity>
-      <View style={styles.checkboxContainer}>
-        <TouchableOpacity
-          style={styles.checkbox}
-          onPress={() => setRememberMe(!rememberMe)}
-        >
-          {rememberMe ? <View style={styles.checkedBox} /> : <View style={styles.uncheckedBox} />}
-        </TouchableOpacity>
-        <Text style={styles.checkboxText}>Remember Me</Text>
-      </View>
-      <TouchableOpacity onPress={handleLogin} style={styles.button}>
-        <Text style={styles.buttonText}>LOGIN</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={handleCreateAccount} style={styles.button}>
-        <Text style={styles.buttonText}>CREATE ACCOUNT</Text>
-      </TouchableOpacity>
-    </View>
+    <>
+      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.container}>
+          <View style={styles.logoContainer}>
+            <Image source={require('../assets/logo.png')} style={styles.logo} />
+          </View>
+          <Text style={styles.text}>USERNAME:</Text>
+          <TextInput
+            style={styles.input}
+            value={username}
+            onChangeText={setUsername}
+            placeholder="Enter username"
+            accessible
+            accessibilityLabel="Username Input"
+          />
+          <Text style={styles.text}>PASSWORD:</Text>
+          <View style={styles.passwordContainer}>
+            <TextInput
+              style={styles.input}
+              secureTextEntry={passwordVisibility}
+              value={password}
+              onChangeText={setPassword}
+              placeholder="Enter password"
+              accessible
+              accessibilityLabel="Password Input"
+            />
+          </View>
+          <TouchableOpacity style={styles.textContainer}>
+            <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+          </TouchableOpacity>
+          <View style={styles.checkboxContainer}>
+            <TouchableOpacity
+              style={styles.checkbox}
+              onPress={() => setRememberMe(!rememberMe)}
+            >
+              {rememberMe ? <View style={styles.checkedBox} /> : <View style={styles.uncheckedBox} />}
+            </TouchableOpacity>
+            <Text style={styles.checkboxText}>Remember Me</Text>
+          </View>
+          <TouchableOpacity onPress={handleLogin} style={styles.button}>
+            <Text style={styles.buttonText}>LOGIN</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>CREATE ACCOUNT</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    </>
   );
 }
 
+
 const styles = StyleSheet.create({
+    safeArea: {
+      flex: 1,
+      backgroundColor: 'black',
+    },
     container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 20,
-        backgroundColor: '#fff', 
-        marginVertical: 40, 
-       },
+      flexGrow: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: 20,
+      backgroundColor: '#fff',
+    },
     logoContainer: {
         marginBottom: 30,
     },
@@ -107,6 +113,10 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#000', 
         borderRadius: 50,
+    },
+    passwordContainer: {
+      width: '100%', // Make sure the password container takes up full width to position the visibility button correctly
+      alignItems: 'center', // Center align items for consistency
     },
     button: {
         backgroundColor: '#ffec41', 
@@ -164,14 +174,5 @@ const styles = StyleSheet.create({
     forgotPasswordText: {
         color: '#000',
         alignContent: 'center',
-    },
-    visibilityBtn: {
-        position: 'absolute',
-        right: 10,
-        height: 45,
-        width: 45,
-        padding: 5,
-        justifyContent: 'center',
-        alignItems: 'center',
     },
 });
