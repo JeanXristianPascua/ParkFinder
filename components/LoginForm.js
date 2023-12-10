@@ -10,14 +10,12 @@ export default function LoginForm() {
   const navigation = useNavigation();
 
   const handleLogin = () => {
-    // Simple form validation
     if (username === '' || password === '') {
       Alert.alert('Error', 'Please enter both username and password');
       return;
     }
 
-    // Simulated authentication logic (replace with your actual logic)
-    if (username === 'user' && password === 'password') { // Replace with actual authentication check
+    if (username === 'user' && password === 'password') { 
       navigation.navigate('Home');
     } else {
       Alert.alert('Error', 'Invalid username or password');
@@ -25,11 +23,9 @@ export default function LoginForm() {
   };
 
   const handleCreateAccount = () => {
-    // Implement create account logic
   };
 
   const handleForgotPassword = () => {
-    // Implement forgot password logic
   };
 
   return (
@@ -92,15 +88,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         padding: 20,
-        backgroundColor: '#fff', // Background color of the screen
-        marginVertical: 40, // This creates the top and bottom borders
+        backgroundColor: '#fff', 
+        marginVertical: 40, 
        },
     logoContainer: {
         marginBottom: 30,
     },
     logo: {
-        width: 150, // Set your desired logo width
-        height: 150, // Set your desired logo height
+        width: 150, 
+        height: 150,
         resizeMode: 'contain',
     },
     input: {
@@ -109,11 +105,11 @@ const styles = StyleSheet.create({
         padding: 15,
         marginBottom: 10,
         borderWidth: 1,
-        borderColor: '#000', // Set your desired border color
+        borderColor: '#000', 
         borderRadius: 50,
     },
     button: {
-        backgroundColor: '#ffec41', // Set your desired button color
+        backgroundColor: '#ffec41', 
         padding: 15,
         width: 199,
         alignItems: 'center',
@@ -122,17 +118,17 @@ const styles = StyleSheet.create({
         height: 50,
     },
     buttonText: {
-        color: '#000', // Set your desired button text color
+        color: '#000', 
         fontWeight: 'bold',
     },
     textContainer: {
         flexDirection: 'row',
-        justifyContent: 'center', // Center the text horizontally
+        justifyContent: 'center', 
         width: '100%',
         marginBottom: 10,
     },
     text: {
-        color: '#000', // Set your desired text color
+        color: '#000', 
         alignContent: 'center',
         fontWeight: 'bold',
         marginBottom: 10,
@@ -166,7 +162,7 @@ const styles = StyleSheet.create({
         color: '#000',
     },
     forgotPasswordText: {
-        color: '#000', // Set your desired text color
+        color: '#000',
         alignContent: 'center',
     },
     visibilityBtn: {

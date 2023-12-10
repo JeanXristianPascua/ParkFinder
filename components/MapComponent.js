@@ -28,7 +28,7 @@ export default function MapComponent({ location }) {
           longitude: location.coords.longitude
         }}
         title={"Your Location"}
-        description={"You are here"}  // Additional description for the marker
+        description={"You are here"} 
       />
     </MapView>
   );

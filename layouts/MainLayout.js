@@ -7,7 +7,6 @@ export default function MainLayout({ children }) {
       <View style={styles.content}>
         {children}
       </View>
-      {/* Add common components here, like a Footer or Navigation Bar */}
     </SafeAreaView>
   );
 };
@@ -15,10 +14,10 @@ export default function MainLayout({ children }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f0f0f0', // Set a background color for the entire app
+    backgroundColor: '#f0f0f0', 
   },
   content: {
     flex: 1,
-    padding: 10, // Provide some padding around each screen
+    padding: 10, 
   },
 });
