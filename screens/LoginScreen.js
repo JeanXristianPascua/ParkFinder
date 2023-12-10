@@ -11,7 +11,7 @@ export default function LoginScreen() {
         behavior={Platform.OS === "ios" ? "padding" : null}
         keyboardVerticalOffset={Platform.OS === "ios" ? 60 : 0}
       >
-        <ScrollView contentContainerStyle={styles.scrollView}>
+        <ScrollView>
           <LoginForm />
         </ScrollView>
       </KeyboardAvoidingView>
@@ -23,16 +23,9 @@ const styles = StyleSheet.create({
   outerContainer: {
     flex: 1,
     backgroundColor: '#000000', 
+    height: 80,
   },
   keyboardView: {
     flex: 1,
-  },
-  scrollView: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    paddingHorizontal: 20, 
-    borderTopWidth: 1, 
-    borderBottomWidth: 1,
-    borderColor: '#000000',
   },
 });
