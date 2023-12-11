@@ -38,7 +38,7 @@ export default function HomeScreen() {
       ) : (
         <Text style={styles.text}>{text}</Text> // Show text while waiting for location or in case of error
       )}
-      <Footer /> // Footer component for navigation
+      <Footer />
     </View>
   );
 };
@@ -54,5 +54,3 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 });
-
-

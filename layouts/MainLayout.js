@@ -24,4 +24,3 @@ export default function MainLayout({ children, style }) {
     </SafeAreaView>
   );
 };
-
