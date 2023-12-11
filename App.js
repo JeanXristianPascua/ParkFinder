@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 import Header from './layouts/Header';
+import Footer from './layouts/Footer';
 
 const Stack = createNativeStackNavigator();
 export const AuthContext = createContext();

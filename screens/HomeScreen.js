@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import * as Location from 'expo-location';
 import MapComponent from '../components/MapComponent';
+import Footer from '../layouts/Footer';
 
 export default function HomeScreen() {
   const [location, setLocation] = useState(null);
@@ -28,13 +29,27 @@ export default function HomeScreen() {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       {location ? (
         <MapComponent location={location} />
       ) : (
         <Text>{text}</Text>
       )}
+      <Footer />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 20,
+    marginBottom: 20,
+  },
+});
+
 

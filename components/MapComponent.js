@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Dimensions, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, ActivityIndicator, ScrollView } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { getDistance } from 'geolib';
@@ -34,6 +34,7 @@ export default function MapComponent() {
     };
   }, []);
 
+
   const fetchParkingLots = async (latitude, longitude) => {
     const url = 'https://data.calgary.ca/resource/rhkg-vwwp.json';
     try {
@@ -59,10 +60,9 @@ export default function MapComponent() {
     const [longitude, latitude] = firstLineString[0]; 
     return { latitude, longitude };
   };
-  
 
   const findNearestParkingLots = (parkingLots, userLat, userLong) => {
-    const processedLots = parkingLots.map(lot => {
+    return parkingLots.map(lot => {
       const { latitude, longitude } = parseLineField(lot.line);
 
       if (latitude == null || longitude == null) {
@@ -80,8 +80,6 @@ export default function MapComponent() {
       };
     }).filter(lot => lot !== null)
       .sort((a, b) => a.distance - b.distance);
-
-    return processedLots;
   };
 
   if (errorMsg) {
@@ -98,7 +96,7 @@ export default function MapComponent() {
   }
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
       <MapView
         style={styles.map}
         region={{
@@ -110,31 +108,34 @@ export default function MapComponent() {
         showsUserLocation={true}
         followUserLocation={true}
       >
-        <Marker
-          coordinate={{
-            latitude: location.coords.latitude,
-            longitude: location.coords.longitude,
-          }}
-          title={"Your Location"}
-          description={"You are here"}
-        />
+        {/* Markers for the nearby parking lots */}
         {nearbyParkingLots.map((lot, index) => (
-          !isNaN(lot.latitude) && !isNaN(lot.longitude) && (
-            <Marker
-              key={index}
-              coordinate={{
-                latitude: lot.latitude,
-                longitude: lot.longitude,
-              }}
-              title={lot.address_desc || "Parking Lot"}
-              description={`Distance: ${lot.distance} meters`}
-            />
-          )
+          <Marker
+            key={index}
+            coordinate={{
+              latitude: lot.latitude,
+              longitude: lot.longitude,
+            }}
+            title={lot.address_desc || "Parking Lot"}
+            description={`Distance: ${lot.distance} meters`}
+          />
         ))}
       </MapView>
+
+      {/* Bottom-aligned ScrollView for parking lots information */}
+      <View style={styles.parkingListContainer}>
+        <ScrollView>
+          {nearbyParkingLots.map((lot, index) => (
+            <View key={index} style={styles.parkingItem}>
+              <Text style={styles.parkingTitle}>{lot.address_desc || "Parking Lot"}</Text>
+              <Text style={styles.parkingDistance}>{`Distance: ${lot.distance} meters`}</Text>
+            </View>
+          ))}
+        </ScrollView>
+      </View>
     </View>
   );
-};  
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -145,5 +146,28 @@ const styles = StyleSheet.create({
   map: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
+  },
+  parkingListContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'white',
+    maxHeight: '100%',
+  },
+  parkingItem: {
+    backgroundColor: '#f7f7f7',
+    padding: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e1e1e1',
+  },
+  parkingTitle: {
+    fontSize: 16,
+    color: '#333',
+    fontWeight: 'bold',
+  },
+  parkingDistance: {
+    fontSize: 14,
+    color: '#666',
   },
 });

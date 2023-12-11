@@ -6,16 +6,19 @@ export default function Footer() {
   return (
     <View style={styles.footer}>
       <TouchableOpacity onPress={() => alert('Home!')}>
-        <Ionicons name="md-home" size={24} color="black" />
+        <Ionicons name="md-home" size={24} color="yellow" />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => alert('Search!')}>
-        <Ionicons name="md-search" size={24} color="black" />
+      <TouchableOpacity onPress={() => alert('Bookmark!')}>
+        <Ionicons name="md-bookmark" size={24} color="yellow" />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => alert('Location!')}>
+        <Ionicons name="md-location" size={24} color="yellow" />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => alert('Notifications!')}>
-        <Ionicons name="md-notifications" size={24} color="black" />
+        <Ionicons name="md-notifications" size={24} color="yellow" />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => alert('Profile!')}>
-        <Ionicons name="md-person" size={24} color="black" />
+      <TouchableOpacity onPress={() => alert('Car!')}>
+        <Ionicons name="md-car" size={24} color="yellow" />
       </TouchableOpacity>
     </View>
   );
@@ -27,9 +30,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     paddingVertical: 10,
-    backgroundColor: '#fff',
+    backgroundColor: 'black',
     borderTopWidth: 1,
     borderTopColor: '#ddd',
+    width: '100%',
   },
 });
 
