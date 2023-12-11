@@ -8,36 +8,46 @@ import {
   StyleSheet,
   Alert,
   SafeAreaView,
-  StatusBar, // import StatusBar
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+
+// LoginForm component definition
 export default function LoginForm() {
+  // State variables to manage user input and form state
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [passwordVisibility, setPasswordVisibility] = useState(true);
   const [rememberMe, setRememberMe] = useState(false);
   const navigation = useNavigation();
 
+  // Function to handle login action
   const handleLogin = () => {
+    // Validation to ensure username and password are entered
     if (username === '' || password === '') {
       Alert.alert('Error', 'Please enter both username and password');
       return;
     }
+    // Dummy authentication logic for demonstration
     if (username === 'user' && password === 'password') {
+      // Navigate to Home screen if credentials are correct
       navigation.navigate('Home');
     } else {
+      // Show error alert if credentials are incorrect
       Alert.alert('Error', 'Invalid username or password');
     }
   };
 
+  // Render function to display UI components
   return (
     <>
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
+          {/* Logo container */}
           <View style={styles.logoContainer}>
             <Image source={require('../assets/logo.png')} style={styles.logo} />
           </View>
+          {/* Username input field */}
           <Text style={styles.text}>USERNAME:</Text>
           <TextInput
             style={styles.input}
@@ -47,6 +57,7 @@ export default function LoginForm() {
             accessible
             accessibilityLabel="Username Input"
           />
+          {/* Password input field */}
           <Text style={styles.text}>PASSWORD:</Text>
           <View style={styles.passwordContainer}>
             <TextInput
@@ -59,9 +70,11 @@ export default function LoginForm() {
               accessibilityLabel="Password Input"
             />
           </View>
+          {/* Forgot Password link */}
           <TouchableOpacity style={styles.textContainer}>
             <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
           </TouchableOpacity>
+          {/* Remember Me checkbox */}
           <View style={styles.checkboxContainer}>
             <TouchableOpacity
               style={styles.checkbox}
@@ -71,9 +84,11 @@ export default function LoginForm() {
             </TouchableOpacity>
             <Text style={styles.checkboxText}>Remember Me</Text>
           </View>
+          {/* Login button */}
           <TouchableOpacity onPress={handleLogin} style={styles.button}>
             <Text style={styles.buttonText}>LOGIN</Text>
           </TouchableOpacity>
+          {/* Create Account button */}
           <TouchableOpacity style={styles.button}>
             <Text style={styles.buttonText}>CREATE ACCOUNT</Text>
           </TouchableOpacity>
@@ -82,7 +97,6 @@ export default function LoginForm() {
     </>
   );
 }
-
 
 const styles = StyleSheet.create({
     safeArea: {
@@ -114,8 +128,8 @@ const styles = StyleSheet.create({
         borderRadius: 50,
     },
     passwordContainer: {
-      width: '100%', // Make sure the password container takes up full width to position the visibility button correctly
-      alignItems: 'center', // Center align items for consistency
+      width: '100%',
+      alignItems: 'center',
     },
     button: {
         backgroundColor: '#ffec41', 
