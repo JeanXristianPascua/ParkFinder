@@ -44,15 +44,3 @@ npm start
 ```
 
 The application will start and you can access it through your web browser at http://localhost:3000.
-
-## Contributing
-
-If you wish to contribute to GoPark, please fork the repository and create a pull request with your proposed changes.
-
-## Support
-
-If you encounter any issues, please open an issue in the repository.
-
-## Authors and acknowledgment
-
-Thank you to all the contributors who have invested their time in developing GoPark.
