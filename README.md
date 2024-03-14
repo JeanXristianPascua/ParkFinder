@@ -20,7 +20,7 @@ Before you begin, ensure you have met the following requirements:
 Clone the repository to your local machine:
 
 ```
-git clone https://your-repository-url.com
+git clone [https://your-repository-url.com](https://github.com/JeanXristianPascua/GoPARK.git)
 ```
 
 Navigate to the GoPark directory:
