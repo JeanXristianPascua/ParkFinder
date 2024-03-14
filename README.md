@@ -1,46 +1,42 @@
 # GoPark
 
-GoPark is a convenient tool designed to help users find the three nearest available parking spots in downtown Calgary. Utilizing real-time data, GoPark aims to make parking hassle-free and efficient.
+GoPark is a mobile application designed to help users in Calgary's downtown area to efficiently find the three nearest available parking spots. By leveraging real-time data, GoPark simplifies the parking experience and saves you time.
 
 ## Features
 
-- Real-time search for the nearest parking spots
-- Detailed information on each parking location
-- Easy-to-use interface
+- **Real-time Parking Spot Search**: Instantly locates the three closest available parking spots.
+- **Parking Details**: Provides comprehensive information about each parking location.
+- **User-Friendly Interface**: Designed for ease of use on mobile devices.
 
 ## Prerequisites
 
-Before you begin, ensure you have met the following requirements:
+To run the GoPark app, you need:
 
-- Node.js and npm installed
-- An internet connection
+- A compatible mobile device with internet access.
+- The Expo app installed on your mobile device for testing ([iOS](https://apps.apple.com/app/expo-go/id982107779) / [Android](https://play.google.com/store/apps/details?id=host.exp.exponent)).
 
 ## Installation
 
-Clone the repository to your local machine:
+To install and run the project locally, follow these steps:
 
-```
-git clone https://github.com/JeanXristianPascua/GoPARK.git
-```
+1. Clone the repository:
+    ```
+    git clone https://your-repository-url.com
+    ```
+2. Navigate to the project directory:
+    ```
+    cd GoPark
+    ```
+3. Install dependencies:
+    ```
+    npm install
+    ```
 
-Navigate to the GoPark directory:
+## Running the App
+Start the application:
+    ```
+    expo start
+    ```
 
-```
-cd GoPark
-```
-
-Install the required packages:
-
-```
-npm install
-```
-
-## Usage
-
-To run GoPark, execute the following command:
-
-```
-npm start
-```
-
-The application will start and you can access it through your web browser at http://localhost:3000.
+1. Open the Expo app on your mobile device and scan the QR code provided in the terminal or in the browser that opens.
+2. The app should start on your device, allowing you to test all the features.
