@@ -19,23 +19,21 @@ Before you begin, ensure you have met the following requirements:
 
 Clone the repository to your local machine:
 
-```
-git clone https://github.com/JeanXristianPascua/GoPARK.git
-```
+```git clone https://github.com/JeanXristianPascua/GoPARK.git```
 
 Navigate to the GoPark directory:
 
-'cd GoPark'
+```cd GoPark```
 
 Install the required packages:
 
-'npm install'
+```npm install```
 
 ## Usage
 
 To run GoPark, execute the following command:
 
-'npm start'
+```npm start```
 
 The application will start and you can access it through your web browser at http://localhost:3000.
 
