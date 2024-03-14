@@ -19,7 +19,9 @@ Before you begin, ensure you have met the following requirements:
 
 Clone the repository to your local machine:
 
-'git clone https://your-repository-url.com'
+'''
+git clone https://your-repository-url.com
+'''
 
 Navigate to the GoPark directory:
 
@@ -29,7 +31,7 @@ Install the required packages:
 
 'npm install'
 
-##Usage
+## Usage
 
 To run GoPark, execute the following command:
 
@@ -37,14 +39,14 @@ To run GoPark, execute the following command:
 
 The application will start and you can access it through your web browser at http://localhost:3000.
 
-##Contributing
+## Contributing
 
 If you wish to contribute to GoPark, please fork the repository and create a pull request with your proposed changes.
 
-##Support
+## Support
 
 If you encounter any issues, please open an issue in the repository.
 
-##Authors and acknowledgment
+## Authors and acknowledgment
 
 Thank you to all the contributors who have invested their time in developing GoPark.
