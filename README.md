@@ -34,9 +34,9 @@ To install and run the project locally, follow these steps:
 
 ## Running the App
 Start the application:
-    ```
-    expo start
-    ```
+```
+expo start
+```
 
 1. Open the Expo app on your mobile device and scan the QR code provided in the terminal or in the browser that opens.
 2. The app should start on your device, allowing you to test all the features.
