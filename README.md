@@ -20,7 +20,9 @@ Before you begin, ensure you have met the following requirements:
 Clone the repository to your local machine:
 
 '''
+{
 git clone https://your-repository-url.com
+}
 '''
 
 Navigate to the GoPark directory:
