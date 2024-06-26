@@ -1,6 +1,6 @@
-# GoPark
+# Park Finder
 
-GoPark is a mobile application designed to help users in Calgary's downtown area to efficiently find the three nearest available parking spots. By leveraging real-time data, GoPark simplifies the parking experience and saves you time.
+Park Finder is a mobile application designed to help users in Calgary's downtown area to efficiently find the three nearest available parking spots. By leveraging real-time data, GoPark simplifies the parking experience and saves you time.
 
 ## Features
 
