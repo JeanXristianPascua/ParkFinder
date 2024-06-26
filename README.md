@@ -1,42 +1,21 @@
 # Park Finder
 
-Park Finder is a mobile application designed to help users in Calgary's downtown area to efficiently find the three nearest available parking spots. By leveraging real-time data, GoPark simplifies the parking experience and saves you time.
+Park Finder is a mobile application designed to help users in Calgary's downtown area efficiently find the three nearest available parking spots. By leveraging real-time data, Park Finder simplifies the parking experience and saves you time.
 
-## Features
+## Project Overview
+
+### Features
 
 - **Real-time Parking Spot Search**: Instantly locates the three closest available parking spots.
 - **Parking Details**: Provides comprehensive information about each parking location.
 - **User-Friendly Interface**: Designed for ease of use on mobile devices.
 
-## Prerequisites
+### Technology Used
 
-To run the GoPark app, you need:
-
-- A compatible mobile device with internet access.
-- The Expo app installed on your mobile device for testing ([iOS](https://apps.apple.com/app/expo-go/id982107779) / [Android](https://play.google.com/store/apps/details?id=host.exp.exponent)).
-
-## Installation
-
-To install and run the project locally, follow these steps:
-
-1. Clone the repository:
-    ```
-    git clone https://github.com/JeanXristianPascua/ParkFinder.git
-    ```
-2. Navigate to the project directory:
-    ```
-    cd ParkFinder
-    ```
-3. Install dependencies:
-    ```
-    npm install
-    ```
-
-## Running the App
-Start the application:
-```
-expo start
-```
-
-1. Open the Expo app on your mobile device and scan the QR code provided in the terminal or in the browser that opens.
-2. The app should start on your device, allowing you to test all the features.
+- **React Native**: For building the mobile application.
+- **Expo**: For simplifying the development and testing process.
+- **Node.js**: For server-side operations and handling real-time data.
+- **Firebase**: For real-time database and authentication.
+- **Google Maps API**: For location services and map integration.
+- **Axios**: For handling API requests.
+- **Redux**: For state management.
