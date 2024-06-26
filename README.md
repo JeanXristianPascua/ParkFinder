@@ -21,7 +21,7 @@ To install and run the project locally, follow these steps:
 
 1. Clone the repository:
     ```
-    git clone https://your-repository-url.com
+    git clone https://github.com/JeanXristianPascua/ParkFinder.git
     ```
 2. Navigate to the project directory:
     ```
